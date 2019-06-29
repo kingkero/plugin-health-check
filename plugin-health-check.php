@@ -2,10 +2,10 @@
 /**
  * @wordpress-plugin
  * Plugin Name:     Plugin Health Check
- * Plugin URI:      PLUGIN SITE HERE
+ * Plugin URI:      https://github.com/kingkero/plugin-health-check
  * Description:     Adds info about installed plugins to the Site Health Check.
- * Author:          YOUR NAME HERE
- * Author URI:      YOUR SITE HERE
+ * Author:          Martin Rehberger
+ * Author URI:      https://github.com/kingkero
  * Text Domain:     plugin-health-check
  * License:         GPL-3.0+
  * License URI:     https://opensource.org/licenses/GPL-3.0
