@@ -13,7 +13,7 @@
  */
 
 // global variable definitions
-define('KERO_PHC_VERSION', '0.0.0');
+define('KERO_PHC_VERSION', '0.1.0');
 define('KERO_PHC_PATH', plugin_dir_path(__FILE__));
 define('KERO_PHC_URL', plugin_dir_url(__FILE__));
 define('KERO_PHC_BASENAME', plugin_basename(__FILE__));
