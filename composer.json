@@ -1,0 +1,19 @@
+{
+	"name": "kingkero/plugin-health-check",
+	"description": "WordPress plugin to add info about installed plugins to the Site Health Check.",
+	"keywords": ["wordpress", "plugin", "health check"],
+	"type": "wordpress-plugin",
+	"license": "GPL-3.0-or-later",
+	"authors": [
+		{
+			"name": "Martin Rehberger",
+			"email": "martin@matchwerk.de",
+			"homepage": "https://github.com/kingkero"
+		}
+	],
+	"minimum-stability": "stable",
+	"require": {
+		"php": ">=7.1",
+		"composer/installers": "v1.0.6"
+	}
+}
