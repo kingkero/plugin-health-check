@@ -12,17 +12,15 @@
  * Version:         0.1.0
  */
 
-// If called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
+// global variable definitions
+define('KERO_PHC_VERSION', '0.0.0');
+define('KERO_PHC_PATH', plugin_dir_path(__FILE__));
+define('KERO_PHC_URL', plugin_dir_url(__FILE__));
+define('KERO_PHC_BASENAME', plugin_basename(__FILE__));
+define('KERO_PHC_PREFIX', 'kero_phc_');
 
-// Global variable definitions, use as few as possible.
-define( 'ACME_DEMO_VERSION', '1.0.0' );
-define( 'ACME_DEMO_PATH', plugin_dir_path( __FILE__ ) );
-define( 'ACME_DEMO_URL', plugin_dir_url( __FILE__ ) );
-define( 'ACME_DEMO_BASENAME', plugin_basename( __FILE__ ) );
-define( 'ACME_DEMO_PREFIX', 'acme_demo_' );
+// load composer's autoload file
+// phpcs:disable
+require_once KERO_PHC_PATH . 'vendor/autoload.php';
+// phpcs:enable
 
-// Load composer's autoload file.
-require_once ACME_DEMO_PATH . 'vendor/autoload.php';
