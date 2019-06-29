@@ -27,8 +27,9 @@ require_once KERO_PHC_PATH . 'vendor/autoload.php';
 // hook activation, deactivation and uninstall
 register_activation_hook(__FILE__, [\KERO\PluginHealthCheck\Tools\Activator::class, 'run']);
 register_deactivation_hook(__FILE__, [\KERO\PluginHealthCheck\Tools\Deactivator::class, 'run']);
-register_uninstall_hook(__FILE__, [\KERO\PHC\PluginHealthCheck\Uninstaller::class, 'run']);
+register_uninstall_hook(__FILE__, [\KERO\PluginHealthCheck\Tools\Uninstaller::class, 'run']);
 
+// initialize Plugin, leave this file
 \KERO\PluginHealthCheck\Plugin::init();
 // phpcs:enable
 

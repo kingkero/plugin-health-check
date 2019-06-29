@@ -1,6 +1,6 @@
 <?php
 
-namespace KERO\PluginHealthCheck\;
+namespace KERO\PluginHealthCheck;
 
 class Plugin
 {
