@@ -5,6 +5,8 @@ Thumbs.db
 wp-cli.local.yml
 vendor/
 node_modules/
+.vscode
+.idea
 *.sql
 *.tar.gz
 *.zip
