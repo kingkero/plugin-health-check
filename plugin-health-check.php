@@ -12,24 +12,17 @@
  * Version:         0.1.0
  */
 
-// global variable definitions
-define('KERO_PHC_VERSION', '0.1.0');
-define('KERO_PHC_PATH', plugin_dir_path(__FILE__));
-define('KERO_PHC_URL', plugin_dir_url(__FILE__));
-define('KERO_PHC_BASENAME', plugin_basename(__FILE__));
-define('KERO_PHC_PREFIX', 'kero_phc_');
+namespace KERO\PluginHealthCheck;
 
-// phpcs:disable
+use Tools\{Activator, Deactivator, Uninstaller};
 
 // load composer's autoload file
 require_once KERO_PHC_PATH . 'vendor/autoload.php';
 
 // hook activation, deactivation and uninstall
-register_activation_hook(__FILE__, [\KERO\PluginHealthCheck\Tools\Activator::class, 'run']);
-register_deactivation_hook(__FILE__, [\KERO\PluginHealthCheck\Tools\Deactivator::class, 'run']);
-register_uninstall_hook(__FILE__, [\KERO\PluginHealthCheck\Tools\Uninstaller::class, 'run']);
+register_activation_hook(__FILE__, [Activator::class, 'run']);
+register_deactivation_hook(__FILE__, [Deactivator::class, 'run']);
+register_uninstall_hook(__FILE__, [Uninstaller::class, 'run']);
 
 // initialize Plugin, leave this file
-\KERO\PluginHealthCheck\Plugin::init();
-// phpcs:enable
-
+Plugin::init();
