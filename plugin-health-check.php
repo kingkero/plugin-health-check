@@ -14,10 +14,10 @@
 
 namespace KERO\PluginHealthCheck;
 
-use Tools\{Activator, Deactivator, Uninstaller};
+use KERO\PluginHealthCheck\Tools\{Activator, Deactivator, Uninstaller};
 
 // load composer's autoload file
-require_once KERO_PHC_PATH . 'vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 // hook activation, deactivation and uninstall
 register_activation_hook(__FILE__, [Activator::class, 'run']);
