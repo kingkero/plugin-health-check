@@ -4,6 +4,7 @@ namespace KERO\PluginHealthCheck;
 
 use Illuminate\Support\Collection;
 use KERO\PluginHealthCheck\Models\Plugin;
+use KERO\PluginHealthCheck\Models\Theme;
 
 class Scanner
 {
@@ -40,9 +41,9 @@ class Scanner
         $active = \wp_get_theme();
 
         return \collect(\search_theme_directories())->map(function ($data, $slug) {
-            return new \WP_Theme($slug, $data['theme_root']);
+            return new Theme($data, $slug);
         })->mapToGroups(function ($theme) use ($active) {
-            $key = $theme->get('Name') === $active->get('Name')
+            $key = $theme->getName() === $active->get('Name')
                 ? 'active'
                 : 'other';
             return [$key => $theme];
