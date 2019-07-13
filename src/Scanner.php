@@ -52,23 +52,19 @@ class Scanner
     /**
      * Return a 2dimensional array of the active and other themes.
      *
-     * @return \WP_Theme[]
+     * @return Collection list of active and other installed themes
      */
-    public function getThemes(): array
+    public function getThemes(): Collection
     {
-        $result = [];
+        $active = \wp_get_theme();
 
-        $result['active'] = [\wp_get_theme()];
-
-        $result['other'] = [];
-        foreach (\search_theme_directories() as $slug => $entry) {
-            $theme = new \WP_Theme($slug, $entry['theme_root']);
-            if ($theme->get('Name') === $result['active'][0]->get('Name')) {
-                continue;
-            }
-            $result['other'][] = $theme;
-        }
-
-        return $result;
+        return \collect(\search_theme_directories())->map(function ($data, $slug) {
+            return new \WP_Theme($slug, $data['theme_root']);
+        })->mapToGroups(function ($theme) use ($active) {
+            $key = $theme->get('Name') === $active->get('Name')
+                ? 'active'
+                : 'other';
+            return [$key => $theme];
+        });
     }
 }
