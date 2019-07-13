@@ -3,6 +3,7 @@
 namespace KERO\PluginHealthCheck;
 
 use Illuminate\Support\Collection;
+use KERO\PluginHealthCheck\Models\WPPlugin;
 
 class Scanner
 {
@@ -13,39 +14,19 @@ class Scanner
     ];
 
     /**
-     * Scan a directory for subdirectories.
-     *
-     * @param string $start base path to start looking for subdirectories
-     * @return Collection list of subdirectories except those blacklisted
-     */
-    public function searchDirectories(string $start): Collection
-    {
-        if (!is_dir($start)) {
-            return \collect([]);
-        }
-
-        return \collect(scandir($start))->filter(function ($subdir) use ($start) {
-            return !in_array($subdir, self::DIR_BLACKLIST)
-                && is_dir($start . DIRECTORY_SEPARATOR . $subdir);
-        });
-    }
-
-    /**
      * Return a 2 dimensional array of active and other plugins.
      *
      * @return Collection list of active and other installed plugins
      */
-    public function getPlugins(): Collection
+    public function getPlugins()
     {
-        $activePlugins = \collect(\get_option('active_plugins'))->map(function ($path) {
-            return explode(DIRECTORY_SEPARATOR, $path, 2)[0];
-        });
+        $activePlugins = \collect(\get_option('active_plugins'));
 
-        return self::searchDirectories(\WP_PLUGIN_DIR)->mapToGroups(function ($slug) use ($activePlugins) {
-            $key = $activePlugins->contains($slug)
+        return \collect(\get_plugins())->mapToGroups(function ($data, $file) use ($activePlugins) {
+            $key = $activePlugins->contains($file)
                 ? 'active'
                 : 'other';
-            return [$key => $slug];
+            return [$key => new WPPlugin($data, $file)];
         });
     }
 
