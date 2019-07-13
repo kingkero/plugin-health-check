@@ -2,6 +2,8 @@
 
 namespace KERO\PluginHealthCheck;
 
+use Illuminate\Support\Collection;
+
 class Scanner
 {
     /** @var string DIR_BLACKLIST list of directories to skip when scanning */
@@ -14,45 +16,37 @@ class Scanner
      * Scan a directory for subdirectories.
      *
      * @param string $start base path to start looking for subdirectories
-     * @return string[] list of subdirectories
+     * @return Collection of subdirectories
      */
-    public function scanDirs(string $start): array
+    public function searchDirectories(string $start): Collection
     {
-        $result = [];
-
         if (!is_dir($start)) {
-            return $result;
+            return \collect([]);
         }
 
-        foreach (scandir($start) as $entry) {
-            if (!in_array($entry, self::DIR_BLACKLIST)
-                && is_dir($start . DIRECTORY_SEPARATOR . $entry)) {
-                $result[] = $entry;
-            }
-        }
-
-        return $result;
+        return \collect(scandir($start))->filter(function ($subdir) use ($start) {
+            return !in_array($subdir, self::DIR_BLACKLIST)
+                && is_dir($start . DIRECTORY_SEPARATOR . $subdir);
+        });
     }
 
     /**
      * Return a 2 dimensional array of active and other plugins.
      *
-     * @return array
+     * @return Collection
      */
-    public function getPlugins(): array
+    public function getPlugins(): Collection
     {
-        $result = [];
-
-        $result['active'] = \collect(\get_option('active_plugins'))->map(function ($path) {
-            list ($slug) = explode(DIRECTORY_SEPARATOR, $path, 2);
-            return $slug;
+        $activePlugins = \collect(\get_option('active_plugins'))->map(function ($path) {
+            return explode(DIRECTORY_SEPARATOR, $path, 2)[0];
         });
 
-        $result['other'] = \collect(self::scanDirs(WP_PLUGIN_DIR))->filter(function ($slug) use ($result) {
-            return !$result['active']->contains($slug);
+        return self::searchDirectories(\WP_PLUGIN_DIR)->mapToGroups(function ($slug) use ($activePlugins) {
+            $key = $activePlugins->contains($slug)
+                ? 'active'
+                : 'other';
+            return [$key => $slug];
         });
-
-        return $result;
     }
 
     /**
