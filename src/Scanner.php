@@ -18,7 +18,7 @@ class Scanner
      *
      * @return Collection list of active and other installed plugins
      */
-    public function getPlugins()
+    public function getPlugins(): Collection
     {
         $activePlugins = \collect(\get_option('active_plugins'));
 
