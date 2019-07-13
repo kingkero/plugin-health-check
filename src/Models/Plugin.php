@@ -2,45 +2,50 @@
 
 namespace KERO\PluginHealthCheck\Models;
 
-class WPPlugin
+class Plugin
 {
-    private $headers = [];
-    private $slug;
-    private $file;
+    /** @var string $name */
+    protected $name;
 
-    /**
-     * Create a new WPPlugin instance.
-     *
-     * @param array $headers the plugin headers
-     * @param string $file relative path to the main plugin file
-     */
+    /** @var string $slug */
+    protected $slug;
+
+    /** @var string $file */
+    protected $file;
+
+
+    /** @var string $version */
+    protected $version;
+
     public function __construct(array $headers, string $file)
     {
         list ($slug) = explode(DIRECTORY_SEPARATOR, $file, 2);
+        $this->slug = $slug;
 
         $this
-            ->setHeaders($headers)
+            ->setName($headers['Name'])
             ->setSlug($slug)
             ->setFile($file)
+            ->setVersion($headers['Version'])
         ;
     }
 
     /**
-     * @param array $headers
+     * @param string $name
      * @return self
      */
-    public function setHeaders(array $headers): self
+    public function setName(string $name): self
     {
-        $this->headers = $headers;
+        $this->name = $name;
         return $this;
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getHeaders(): array
+    public function getName(): string
     {
-        return $this->headers;
+        return $this->name;
     }
 
     /**
@@ -76,6 +81,24 @@ class WPPlugin
      */
     public function getFile(): string
     {
-        return $this->file;
+        return $this->fiel;
+    }
+
+    /**
+     * @param string $version
+     * @return self
+     */
+    public function setVersion(string $version): self
+    {
+        $this->version = $version;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVersion(): string
+    {
+        return $this->version;
     }
 }

@@ -3,7 +3,7 @@
 namespace KERO\PluginHealthCheck;
 
 use Illuminate\Support\Collection;
-use KERO\PluginHealthCheck\Models\WPPlugin;
+use KERO\PluginHealthCheck\Models\Plugin;
 
 class Scanner
 {
@@ -26,7 +26,7 @@ class Scanner
             $key = $activePlugins->contains($file)
                 ? 'active'
                 : 'other';
-            return [$key => new WPPlugin($data, $file)];
+            return [$key => new Plugin($data, $file)];
         });
     }
 
