@@ -16,7 +16,7 @@ class Scanner
      * Scan a directory for subdirectories.
      *
      * @param string $start base path to start looking for subdirectories
-     * @return Collection of subdirectories
+     * @return Collection list of subdirectories except those blacklisted
      */
     public function searchDirectories(string $start): Collection
     {
@@ -33,7 +33,7 @@ class Scanner
     /**
      * Return a 2 dimensional array of active and other plugins.
      *
-     * @return Collection
+     * @return Collection list of active and other installed plugins
      */
     public function getPlugins(): Collection
     {
