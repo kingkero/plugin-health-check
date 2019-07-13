@@ -29,7 +29,7 @@ abstract class AbstractDependency
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -47,7 +47,7 @@ abstract class AbstractDependency
     /**
      * @return string
      */
-    public function getSlug(): string
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
@@ -65,9 +65,9 @@ abstract class AbstractDependency
     /**
      * @return string
      */
-    public function getFile(): string
+    public function getFile(): ?string
     {
-        return $this->fiel;
+        return $this->file;
     }
 
     /**
@@ -83,7 +83,7 @@ abstract class AbstractDependency
     /**
      * @return string
      */
-    public function getVersion(): string
+    public function getVersion(): ?string
     {
         return $this->version;
     }

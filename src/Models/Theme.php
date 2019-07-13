@@ -38,7 +38,7 @@ class Theme extends AbstractDependency
     /**
      * @return void
      */
-    public function getTheme(): \WP_Theme
+    public function getTheme(): ?\WP_Theme
     {
         return $this->theme;
     }
