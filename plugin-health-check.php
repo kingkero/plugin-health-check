@@ -20,11 +20,13 @@ use KERO\PluginHealthCheck\Tools\{Activator, Deactivator, Uninstaller};
 require_once __DIR__ . '/vendor/autoload.php';
 
 /**
- * The file plugin.php is necessary, so we can later use \get_plugins(),
- * see https://developer.wordpress.org/reference/functions/get_plugins/#user-contributed-notes
+ * Load the required files for various method calls that are not standard.
  */
 if (!function_exists('get_plugins')) {
-    require_once \ABSPATH . '/wp-admin/includes/plugin.php';
+    require_once \ABSPATH . 'wp-admin/includes/plugin.php';
+}
+if (!function_exists('plugins_api')) {
+    require_once \ABSPATH . 'wp-admin/includes/plugin-install.php';
 }
 
 // hook activation, deactivation and uninstall
