@@ -43,13 +43,13 @@ class Scanner
     {
         $result = [];
 
-        $result['active'] = array_map(function ($path) {
+        $result['active'] = \collect(\get_option('active_plugins'))->map(function ($path) {
             list ($slug) = explode(DIRECTORY_SEPARATOR, $path, 2);
             return $slug;
-        }, \get_option('active_plugins'));
+        });
 
-        $result['other'] = array_filter(self::scanDirs(WP_PLUGIN_DIR), function ($slug) use ($result) {
-            return !in_array($slug, $result['active']);
+        $result['other'] = \collect(self::scanDirs(WP_PLUGIN_DIR))->filter(function ($slug) use ($result) {
+            return !$result['active']->contains($slug);
         });
 
         return $result;
