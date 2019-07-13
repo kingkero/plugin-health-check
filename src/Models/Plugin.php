@@ -80,7 +80,7 @@ class Plugin extends AbstractDependency
     {
         $latestVersion = $this->getLatestVersion();
 
-        // to avoid false positives, return true for not found plugins
+        // to avoid false negatives, return true for not found plugins
         //TODO: handle better
         return $latestVersion === null || $this->getLatestVersion() === $this->getVersion();
     }
