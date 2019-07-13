@@ -11,8 +11,9 @@ class Plugin
     public const PREFIX = 'phc_';
 
     /**
-    * Initialize the plugin. This method is directly called,
-    * so all regular hooks are available.
+    * Initialize the plugin.
+    *
+    * This method is directly called, so all regular hooks are available.
     *
     * @return void
     */
