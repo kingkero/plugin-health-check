@@ -44,9 +44,9 @@ class Scanner
         $result = [];
 
         $result['active'] = array_map(function ($path) {
-            list ($slug, $more) = explode(DIRECTORY_SEPARATOR, $path, 2);
+            list ($slug) = explode(DIRECTORY_SEPARATOR, $path, 2);
             return $slug;
-        }, get_option('active_plugins'));
+        }, \get_option('active_plugins'));
 
         $result['other'] = array_filter(self::scanDirs(WP_PLUGIN_DIR), function ($slug) use ($result) {
             return !in_array($slug, $result['active']);
