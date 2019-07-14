@@ -10,7 +10,7 @@ class PluginHealthTest
     public const TEST = 'plugin_updates';
 
     /**
-     * Add the test for plugins updates as async.
+     * Add the test for plugin updates as async call.
      *
      * @param array $tests
      * @return array
@@ -25,7 +25,7 @@ class PluginHealthTest
     }
 
     /**
-     * Actually test for plugins updates and echo the result.
+     * Callback for the ajax call.
      *
      * @return void
      */
