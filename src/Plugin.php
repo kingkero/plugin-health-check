@@ -2,7 +2,7 @@
 
 namespace KERO\PluginHealthCheck;
 
-use KERO\PluginHealthCheck\HealthTests\PluginHealthTest;
+use KERO\PluginHealthCheck\HealthTests\{PluginHealthTest, ThemeHealthTest};
 
 class Plugin
 {
@@ -29,6 +29,15 @@ class Plugin
             'wp_ajax_health-check-' . self::PREFIX_AJAX . PluginHealthTest::TEST,
             [
                 PluginHealthTest::class,
+                'run',
+            ]
+        );
+
+        \add_filter('site_status_tests', [ThemeHealthTest::class, 'add']);
+        \add_action(
+            'wp_ajax_health-check-' . self::PREFIX_AJAX . ThemeHealthTest::TEST,
+            [
+                ThemeHealthTest::class,
                 'run',
             ]
         );
