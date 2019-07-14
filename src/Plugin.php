@@ -29,7 +29,7 @@ class Plugin
             'wp_ajax_health-check-' . self::PREFIX_AJAX . PluginHealthTest::TEST,
             [
                 PluginHealthTest::class,
-                'test',
+                'run',
             ]
         );
     }
