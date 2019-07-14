@@ -11,9 +11,22 @@
 			"homepage": "https://github.com/kingkero"
 		}
 	],
+	"autoload": {
+		"psr-4": {
+			"KERO\\PluginHealthCheck\\": "src/"
+		}
+	},
 	"minimum-stability": "stable",
 	"require": {
 		"php": ">=7.1",
-		"composer/installers": "v1.0.6"
+		"composer/installers": "v1.0.6",
+		"illuminate/support": "^5.8"
+	},
+	"require-dev": {
+		"squizlabs/php_codesniffer": "^3.4",
+		"phpcompatibility/phpcompatibility-paragonie": "*",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+		"roave/security-advisories": "dev-master",
+		"phpcompatibility/phpcompatibility-wp": "^2.0"
 	}
 }
