@@ -33,7 +33,7 @@ class PluginHealthTest
     {
         check_ajax_referer('health-check-site-status');
 
-        if (!\current_user_can('install_plugins')) {
+        if (!\current_user_can('update_plugins')) {
             \wp_send_json_error();
         }
 
