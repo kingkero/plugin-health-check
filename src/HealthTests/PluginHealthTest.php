@@ -3,7 +3,6 @@
 namespace KERO\PluginHealthCheck\HealthTests;
 
 use KERO\PluginHealthCheck\Plugin;
-use stdClass;
 
 class PluginHealthTest
 {
