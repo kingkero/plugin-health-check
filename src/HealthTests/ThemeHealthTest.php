@@ -105,7 +105,7 @@ class ThemeHealthTest
                         __('<em>%1$s</em> (%2$s &rarr; %3$s)', 'plugin-health-check'),
                         $data->Name,
                         $data->Version,
-                        $data->update->new_version
+                        $data->update['new_version']
                     );
                 })->reduce(function ($carry, $item) {
                     return $carry . '<li>' . $item . '</li>';
