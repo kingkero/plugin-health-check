@@ -42,6 +42,11 @@ class PluginHealthTest
         die();
     }
 
+    /**
+     * Check if plugin updates are available.
+     *
+     * @return array
+     */
     private static function testPlugins(): array
     {
         $defaultMessage = __(
