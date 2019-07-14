@@ -4,13 +4,13 @@ namespace KERO\PluginHealthCheck\HealthTests;
 
 use KERO\PluginHealthCheck\Plugin;
 
-class PluginHealthTest
+class ThemeHealthTest
 {
     /** @var string TEST slug of the test this feature adds */
-    public const TEST = 'plugin_updates';
+    public const TEST = 'theme_updates';
 
     /**
-     * Add the test for plugin updates as async call.
+     * Add the test for theme updates as async call.
      *
      * @param array $tests
      * @return array
@@ -18,7 +18,7 @@ class PluginHealthTest
     public static function add(array $tests): array
     {
         $tests['async'][Plugin::PREFIX . self::TEST] = [
-            'label' => __('Plugin updates available', 'plugin-health-check'),
+            'label' => __('Theme updates available', 'plugin-health-check'),
             'test'  => Plugin::PREFIX . self::TEST,
         ];
         return $tests;
@@ -33,29 +33,29 @@ class PluginHealthTest
     {
         check_ajax_referer('health-check-site-status');
 
-        if (!\current_user_can('update_plugins')) {
+        if (!\current_user_can('update_themes')) {
             \wp_send_json_error();
         }
 
-        $response = self::testPlugins();
+        $response = self::testThemes();
         wp_send_json_success($response);
         die();
     }
 
     /**
-     * Check if plugin updates are available.
+     * Check if theme updates are available.
      *
      * @return array
      */
-    private static function testPlugins(): array
+    private static function testThemes(): array
     {
         $defaultMessage = __(
-            'Keeping your plugins up to date improves security and may add other benefits.',
+            'Keeping your themes up to date improves security and may add other benefits.',
             'plugin-health-check'
         );
 
         $result = [
-            'label' => __('All plugins are up to date', 'plugin-health-check'),
+            'label' => __('All themes are up to date', 'plugin-health-check'),
             'status' => 'good',
             'badge' => [
                 'label' => __('Security'),
@@ -69,19 +69,19 @@ class PluginHealthTest
             'test' => Plugin::PREFIX . self::TEST,
         ];
 
-        if (!function_exists('get_plugin_updates')) {
+        if (!function_exists('get_theme_updates')) {
             require_once(\ABSPATH . 'wp-admin/includes/update.php');
         }
 
-        $updates = \get_plugin_updates();
+        $updates = \get_theme_updates();
         if (!empty($updates)) {
             $amount = count($updates);
 
             $result['label'] = sprintf(
-                /* translators: %s: number of plugins with updates available */
+                /* translators: %s: number of themes with updates available */
                 _n(
-                    'There is %s plugin update available',
-                    'There are %s plugin updates available',
+                    'There is %s theme update available',
+                    'There are %s theme updates available',
                     $amount,
                     'plugin-health-check'
                 ),
@@ -95,17 +95,17 @@ class PluginHealthTest
             $result['description'] = sprintf(
                 '<p>%s %s</p><ul>%s</ul>',
                 __(
-                    'Not all plugins are up to date on your site.',
+                    'Not all themes are up to date on your site.',
                     'plugin-health-check'
                 ),
                 $defaultMessage,
                 \collect($updates)->map(function ($data) {
                     return sprintf(
-                        /* translators: 1: Name of the plugin 2: Current version 3: Version after update */
+                        /* translators: 1: Name of the theme 2: Current version 3: Version after update */
                         __('<em>%1$s</em> (%2$s &rarr; %3$s)', 'plugin-health-check'),
                         $data->Name,
                         $data->Version,
-                        $data->update->new_version
+                        $data->update['new_version']
                     );
                 })->reduce(function ($carry, $item) {
                     return $carry . '<li>' . $item . '</li>';
