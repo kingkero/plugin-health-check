@@ -7,8 +7,15 @@ use stdClass;
 
 class PluginHealthTest
 {
+    /** @var string TEST slug of the test this feature adds */
     public const TEST = 'plugin_updates';
 
+    /**
+     * Add the test for plugins updates as async.
+     *
+     * @param array $tests
+     * @return array
+     */
     public static function add(array $tests): array
     {
         $tests['async'][Plugin::PREFIX . self::TEST] = [
@@ -18,7 +25,12 @@ class PluginHealthTest
         return $tests;
     }
 
-    public static function test()
+    /**
+     * Actually test for plugins updates and echo the result.
+     *
+     * @return void
+     */
+    public static function test(): void
     {
         check_ajax_referer('health-check-site-status');
         echo 'foo';
