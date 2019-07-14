@@ -2,6 +2,8 @@
 
 namespace KERO\PluginHealthCheck;
 
+use KERO\PluginHealthCheck\HealthTests\PluginHealthTest;
+
 class Plugin
 {
     /** @var string VERSION contains the current version nuber */
@@ -19,5 +21,7 @@ class Plugin
     */
     public static function init(): void
     {
+        // \add_filter('site_status_tests', [PluginHealthTest::class, 'add']);
+        // \add_action('wp_ajax_health-check-testPlugins', [PluginHealthTest::class, 'test']);
     }
 }
