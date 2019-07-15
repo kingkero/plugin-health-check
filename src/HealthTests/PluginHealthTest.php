@@ -7,7 +7,7 @@ use KERO\PluginHealthCheck\Plugin;
 class PluginHealthTest
 {
     /** @var string TEST slug of the test this feature adds */
-    public const TEST = 'plugin_updates';
+    const TEST = 'plugin_updates';
 
     /**
      * Add the test for plugin updates as async call.

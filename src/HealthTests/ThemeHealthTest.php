@@ -7,7 +7,7 @@ use KERO\PluginHealthCheck\Plugin;
 class ThemeHealthTest
 {
     /** @var string TEST slug of the test this feature adds */
-    public const TEST = 'theme_updates';
+    const TEST = 'theme_updates';
 
     /**
      * Add the test for theme updates as async call.
