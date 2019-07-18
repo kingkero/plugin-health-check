@@ -7,13 +7,13 @@ use KERO\PluginHealthCheck\HealthTests\{PluginHealthTest, ThemeHealthTest};
 class Plugin
 {
     /** @var string VERSION contains the current version nuber */
-    public const VERSION = '0.0.1';
+    const VERSION = '0.0.1';
 
     /** @var string PREFIX contains the prefix for data store keys */
-    public const PREFIX = 'phc_';
+    const PREFIX = 'phc_';
 
     /** @var string PREFIX contains the prefix transformed in ajax callbacks */
-    public const PREFIX_AJAX = 'phc-';
+    const PREFIX_AJAX = 'phc-';
 
     /**
     * Initialize the plugin.
