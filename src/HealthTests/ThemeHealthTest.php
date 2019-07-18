@@ -7,7 +7,7 @@ use KERO\PluginHealthCheck\Plugin;
 class ThemeHealthTest
 {
     /** @var string TEST slug of the test this feature adds */
-    public const TEST = 'theme_updates';
+    const TEST = 'theme_updates';
 
     /**
      * Add the test for theme updates as async call.
@@ -92,6 +92,17 @@ class ThemeHealthTest
 
             $result['badge']['color'] = 'orange';
 
+            $themeList = [];
+            foreach ($updates as $key => $data) {
+                $themeList[] = sprintf(
+                    /* translators: 1: Name of the theme 2: Current version 3: Version after update */
+                    __('<li><em>%1$s</em> (%2$s &rarr; %3$s)</li>', 'plugin-health-check'),
+                    $data->Name,
+                    $data->Version,
+                    $data->update['new_version']
+                );
+            }
+
             $result['description'] = sprintf(
                 '<p>%s %s</p><ul>%s</ul>',
                 __(
@@ -99,17 +110,7 @@ class ThemeHealthTest
                     'plugin-health-check'
                 ),
                 $defaultMessage,
-                \collect($updates)->map(function ($data) {
-                    return sprintf(
-                        /* translators: 1: Name of the theme 2: Current version 3: Version after update */
-                        __('<em>%1$s</em> (%2$s &rarr; %3$s)', 'plugin-health-check'),
-                        $data->Name,
-                        $data->Version,
-                        $data->update['new_version']
-                    );
-                })->reduce(function ($carry, $item) {
-                    return $carry . '<li>' . $item . '</li>';
-                })
+                $themeList
             );
 
             $result['actions'] .= sprintf(
