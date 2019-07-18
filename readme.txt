@@ -18,5 +18,8 @@ Right now this only includes whether updates are available or not. Future releas
 1. The tests found updates are available for one theme and two plugins.
 
 == Changelog ==
+0.0.2:
+- remove illuminate/support to satisfy PHP7.0 lint
+
 0.0.1:
 - initial release
