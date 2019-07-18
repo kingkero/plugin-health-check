@@ -92,6 +92,17 @@ class PluginHealthTest
 
             $result['badge']['color'] = 'orange';
 
+            $pluginList = [];
+            foreach ($updates as $key => $data) {
+                $pluginList[] = sprintf(
+                    /* translators: 1: Name of the plugin 2: Current version 3: Version after update */
+                    __('<li><em>%1$s</em> (%2$s &rarr; %3$s)</li>', 'plugin-health-check'),
+                    $data->Name,
+                    $data->Version,
+                    $data->update->new_version
+                );
+            }
+
             $result['description'] = sprintf(
                 '<p>%s %s</p><ul>%s</ul>',
                 __(
@@ -99,17 +110,7 @@ class PluginHealthTest
                     'plugin-health-check'
                 ),
                 $defaultMessage,
-                \collect($updates)->map(function ($data) {
-                    return sprintf(
-                        /* translators: 1: Name of the plugin 2: Current version 3: Version after update */
-                        __('<em>%1$s</em> (%2$s &rarr; %3$s)', 'plugin-health-check'),
-                        $data->Name,
-                        $data->Version,
-                        $data->update->new_version
-                    );
-                })->reduce(function ($carry, $item) {
-                    return $carry . '<li>' . $item . '</li>';
-                })
+                implode('', $pluginList)
             );
 
             $result['actions'] .= sprintf(
