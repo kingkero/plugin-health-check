@@ -9,7 +9,7 @@
  * Text Domain:     plugin-health-check
  * License:         GPL-3.0+
  * License URI:     https://opensource.org/licenses/GPL-3.0
- * Version:         0.0.3
+ * Version:         0.0.4
  */
 
 namespace KERO\PluginHealthCheck;
