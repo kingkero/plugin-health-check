@@ -7,7 +7,7 @@ use KERO\PluginHealthCheck\HealthTests\{PluginHealthTest, ThemeHealthTest};
 class Plugin
 {
     /** @var string VERSION contains the current version nuber */
-    const VERSION = '0.0.2';
+    const VERSION = '0.0.3';
 
     /** @var string PREFIX contains the prefix for data store keys */
     const PREFIX = 'phc_';
