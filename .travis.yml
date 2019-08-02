@@ -1,7 +1,16 @@
 language: php
 php:
-- "7.0"
-
+- '7.0'
 script:
-# Just verify that there are no syntax errors in PHP files.
 - php -l *.php
+branches:
+  only:
+  - "/\\d\\.\\d\\.\\d/"
+deploy:
+  provider: script
+  script: deploy/deploy.sh
+  on:
+    tags: true
+env:
+  global:
+  - SVN_REPOSITORY=https://plugins.svn.wordpress.org/plugin-health-check
