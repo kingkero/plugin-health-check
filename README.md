@@ -6,6 +6,10 @@
 This plugin is aimed at WordPress site administrators, helping them to keep their site secure. While it currently only checks for available updates, the goal is to add much more functionality without much overhead or impact on site performance.
 
 ## Release History
+**0.0.3**:
+- ADD travis support and auto deploy to SVN
+- UPDATE readme to show version numbers bold
+
 **0.0.2**:
  * REMOVE: `illuminate/support` to satisfy PHP7.0 lint
 
