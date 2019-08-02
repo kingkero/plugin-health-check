@@ -3,8 +3,9 @@
 # 1. Clone complete SVN repository to separate directory
 svn co $SVN_REPOSITORY ../svn
 
-# 2. Copy git repository contents to SNV trunk/ directory
+# 2. Copy git repository contents to SVN trunk/ directory
 cp -R ./* ../svn/trunk/
+cp ./.distignore ../svn/trunk/
 
 # 3. Switch to SVN repository
 cd ../svn/trunk/
@@ -13,9 +14,14 @@ cd ../svn/trunk/
 mv ./assets/ ../assets/
 
 # 5. Clean up unnecessary files
-rm -rf .git/
-rm -rf deploy/
-rm .travis.yml
+while IFS= read -r line
+do
+    if [[ -d $line ]]; then
+        rm -rf $line
+    elif [[ -f $line ]]; then
+        rm -f $line
+    fi
+done < "./.distignore"
 
 # 6. Go to SVN repository root
 cd ../
