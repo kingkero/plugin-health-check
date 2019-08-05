@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Clone complete SVN repository to separate directory
+echo "clone SVN repo ($SVN_REPOSITORY) to ../svn"
 svn co $SVN_REPOSITORY ../svn
 
 # Copy git repository contents to SVN trunk/ directory
@@ -15,7 +15,7 @@ rm -rf vendor
 composer install --no-dev --optimize-autoloader
 
 # Move assets/ to SVN /assets/
-mv ./assets/ ../assets/
+mv ./assets/* ../assets/
 
 # Clean up unnecessary files
 while IFS= read -r line
@@ -30,10 +30,10 @@ done < "./.distignore"
 # Go to SVN repository root
 cd ../
 
-# Create SVN tag
+echo "create tag $TRAVIS_TAG"
 svn cp trunk tags/$TRAVIS_TAG
 
-# Push SVN tag
+echo "push to SVN"
 svn ci  --message "Release $TRAVIS_TAG" \
         --username $SVN_USERNAME \
         --password $SVN_PASSWORD \
