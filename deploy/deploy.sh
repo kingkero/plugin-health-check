@@ -15,6 +15,7 @@ rm -rf vendor
 composer install --no-dev --optimize-autoloader
 
 # Move assets/ to SVN /assets/
+mkdir -p ../assets/
 mv ./assets/* ../assets/
 
 # Clean up unnecessary files
