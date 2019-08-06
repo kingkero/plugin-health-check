@@ -6,6 +6,9 @@
 This plugin is aimed at WordPress site administrators, helping them to keep their site secure. While it currently only checks for available updates, the goal is to add much more functionality without much overhead or impact on site performance.
 
 ## Release History
+**0.0.5**:
+- UPDATE tags
+
 **0.0.4**:
 - UPDATE configuration
 
