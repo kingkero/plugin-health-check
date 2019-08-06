@@ -24,6 +24,8 @@ class Plugin
     */
     public static function init(): void
     {
+        var_dump(\get_plugins());
+        wp_die();
         \add_filter('site_status_tests', [PluginHealthTest::class, 'add']);
         \add_action(
             'wp_ajax_health-check-' . self::PREFIX_AJAX . PluginHealthTest::TEST,
