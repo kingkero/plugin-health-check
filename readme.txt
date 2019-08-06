@@ -1,5 +1,6 @@
 === Plugin Health Check ===
 Contributors: kingkero
+Tags: health check, site health, site health check
 Requires at least: 5.2
 Tested up to: 5.2.2
 Requires PHP: 7.2
