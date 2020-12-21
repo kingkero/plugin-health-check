@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KERO\PluginHealthCheck\Tools;
 
 class Activator

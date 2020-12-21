@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KERO\PluginHealthCheck\HealthTests;
 
 use KERO\PluginHealthCheck\Plugin;
@@ -7,19 +9,19 @@ use KERO\PluginHealthCheck\Plugin;
 class ThemeHealthTest
 {
     /** @var string TEST slug of the test this feature adds */
-    const TEST = 'theme_updates';
+    public const TEST = 'theme_updates';
 
     /**
      * Add the test for theme updates as async call.
      *
-     * @param array $tests
-     * @return array
+     * @param array<mixed> $tests
+     * @return array<mixed>
      */
     public static function add(array $tests): array
     {
         $tests['async'][Plugin::PREFIX . self::TEST] = [
             'label' => __('Theme updates available', 'plugin-health-check'),
-            'test'  => Plugin::PREFIX . self::TEST,
+            'test' => Plugin::PREFIX . self::TEST,
         ];
         return $tests;
     }
@@ -39,13 +41,12 @@ class ThemeHealthTest
 
         $response = self::testThemes();
         wp_send_json_success($response);
-        die();
     }
 
     /**
      * Check if theme updates are available.
      *
-     * @return array
+     * @return array<mixed>
      */
     private static function testThemes(): array
     {
@@ -110,7 +111,7 @@ class ThemeHealthTest
                     'plugin-health-check'
                 ),
                 $defaultMessage,
-                $themeList
+                implode('', $themeList)
             );
 
             $result['actions'] .= sprintf(
