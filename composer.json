@@ -19,9 +19,8 @@
   "minimum-stability": "stable",
   "prefer-stable": true,
   "scripts": {
-    "phpcs": "phpcs .",
-    "phpcbf": "phpcbf .",
-    "phpstan": "phpstan analyze"
+    "phpcs": "phpcs --no-cache .",
+    "phpstan": "phpstan analyze --no-interaction --no-progress"
   },
   "config": {
     "optimize-autoloader": true,
