@@ -1,4 +1,4 @@
-name: PHP Composer
+name: PHP codestyle & static analysis
 
 on:
   push:
@@ -37,6 +37,9 @@ jobs:
 
     - name: Run PHP Code Style check
       run: composer phpcs
+
+    - name: Run PHP static code analysis
+      run: composer phpstan
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
