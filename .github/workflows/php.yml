@@ -13,16 +13,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      with:
-        php-version: '7.4'
 
     - name: Validate composer.json and composer.lock
       run: composer validate
+      with:
+        php-version: '7.4'
 
     - name: Cache Composer packages
       id: composer-cache
       uses: actions/cache@v2
       with:
+        php-version: '7.4'
         path: vendor
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
