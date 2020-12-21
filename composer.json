@@ -16,14 +16,14 @@
       "KERO\\PluginHealthCheck\\": "src/"
     }
   },
-	"minimum-stability": "stable",
+  "minimum-stability": "stable",
   "prefer-stable": true,
-	"scripts": {
+  "scripts": {
     "phpcs": "phpcs .",
     "phpcbf": "phpcbf .",
     "phpstan": "phpstan analyze"
-	},
-	"config": {
+  },
+  "config": {
     "optimize-autoloader": true,
     "preferred-install": "dist",
     "sort-packages": true
