@@ -14,8 +14,8 @@ class ThemeHealthTest
     /**
      * Add the test for theme updates as async call.
      *
-     * @param array $tests
-     * @return array
+     * @param array<mixed> $tests
+     * @return array<mixed>
      */
     public static function add(array $tests): array
     {
@@ -41,13 +41,12 @@ class ThemeHealthTest
 
         $response = self::testThemes();
         wp_send_json_success($response);
-        die();
     }
 
     /**
      * Check if theme updates are available.
      *
-     * @return array
+     * @return array<mixed>
      */
     private static function testThemes(): array
     {
@@ -112,7 +111,7 @@ class ThemeHealthTest
                     'plugin-health-check'
                 ),
                 $defaultMessage,
-                $themeList
+                implode('', $themeList)
             );
 
             $result['actions'] .= sprintf(

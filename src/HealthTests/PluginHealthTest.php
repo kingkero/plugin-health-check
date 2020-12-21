@@ -14,8 +14,8 @@ class PluginHealthTest
     /**
      * Add the test for plugin updates as async call.
      *
-     * @param array $tests
-     * @return array
+     * @param array<mixed> $tests
+     * @return array<mixed>
      */
     public static function add(array $tests): array
     {
@@ -41,13 +41,12 @@ class PluginHealthTest
 
         $response = self::testPlugins();
         wp_send_json_success($response);
-        die();
     }
 
     /**
      * Check if plugin updates are available.
      *
-     * @return array
+     * @return array<mixed>
      */
     private static function testPlugins(): array
     {
