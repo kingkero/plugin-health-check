@@ -2,6 +2,7 @@
 .distignore
 .editorconfig
 .git
+.gitattributes
 .gitignore
 .gitlab-ci.yml
 .travis.yml
