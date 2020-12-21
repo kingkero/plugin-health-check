@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @wordpress-plugin
  * Plugin Name:     Plugin Health Check
@@ -11,6 +12,8 @@
  * License URI:     https://opensource.org/licenses/GPL-3.0
  * Version:         0.0.5
  */
+
+declare(strict_types=1);
 
 namespace KERO\PluginHealthCheck;
 

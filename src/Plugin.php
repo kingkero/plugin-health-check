@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KERO\PluginHealthCheck;
 
 use KERO\PluginHealthCheck\HealthTests\{PluginHealthTest, ThemeHealthTest};
@@ -7,13 +9,13 @@ use KERO\PluginHealthCheck\HealthTests\{PluginHealthTest, ThemeHealthTest};
 class Plugin
 {
     /** @var string VERSION contains the current version nuber */
-    const VERSION = '0.0.5';
+    public const VERSION = '0.0.5';
 
     /** @var string PREFIX contains the prefix for data store keys */
-    const PREFIX = 'phc_';
+    public const PREFIX = 'phc_';
 
-    /** @var string PREFIX contains the prefix transformed in ajax callbacks */
-    const PREFIX_AJAX = 'phc-';
+    /** @var string PREFIX_AJAX contains the prefix transformed in ajax callbacks */
+    public const PREFIX_AJAX = 'phc-';
 
     /**
     * Initialize the plugin.

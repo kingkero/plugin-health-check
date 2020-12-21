@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KERO\PluginHealthCheck\HealthTests;
 
 use KERO\PluginHealthCheck\Plugin;
@@ -7,7 +9,7 @@ use KERO\PluginHealthCheck\Plugin;
 class PluginHealthTest
 {
     /** @var string TEST slug of the test this feature adds */
-    const TEST = 'plugin_updates';
+    public const TEST = 'plugin_updates';
 
     /**
      * Add the test for plugin updates as async call.
@@ -19,7 +21,7 @@ class PluginHealthTest
     {
         $tests['async'][Plugin::PREFIX . self::TEST] = [
             'label' => __('Plugin updates available', 'plugin-health-check'),
-            'test'  => Plugin::PREFIX . self::TEST,
+            'test' => Plugin::PREFIX . self::TEST,
         ];
         return $tests;
     }
